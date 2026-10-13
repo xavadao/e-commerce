@@ -13,6 +13,8 @@ export default function AboutPage() {
 		const tab = searchParams.get('tab');
 		if (tab === 'size-guide' || tab === 'contact' || tab === 'sustainability') {
 			setActiveTab(tab);
+		} else {
+			setActiveTab('story');
 		}
 	}, [searchParams]);
 

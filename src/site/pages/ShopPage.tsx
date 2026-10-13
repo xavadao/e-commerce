@@ -141,6 +141,8 @@ export default function ShopPage() {
 		const cat = searchParams.get('category');
 		if (cat === 'ready-to-wear' || cat === 'accessories' || cat === 'outerwear') {
 			setActiveCategory(cat);
+		} else {
+			setActiveCategory('all');
 		}
 	}, [searchParams]);
 
