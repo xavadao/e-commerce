@@ -13,6 +13,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en">
 			<body>
+                <noscript><style>{`.fade-up, .reveal, .reveal-fade, .reveal-left, .reveal-right, [data-scroll-reveal] { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }`}</style></noscript>
 				<Providers>
 					<SearchParamsProvider>
 						<AppShell>{children}</AppShell>

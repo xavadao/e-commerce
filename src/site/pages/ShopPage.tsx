@@ -34,6 +34,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 	return (
 		<div
 			ref={ref}
+			data-scroll-reveal
 			className="group"
 			onMouseEnter={() => setHovered(true)}
 			onMouseLeave={() => setHovered(false)}

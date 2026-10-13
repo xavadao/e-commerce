@@ -27,6 +27,7 @@ function AnimatedSection({ children, className = '', delay = 0 }: { children: Re
 	return (
 		<div
 			ref={ref}
+			data-scroll-reveal
 			className={className}
 			style={{
 				opacity: inView ? 1 : 0,
