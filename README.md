@@ -1,4 +1,4 @@
-# Vibed Shop
+# Maison Fashion Store
 
 An editorial fashion storefront built around the MAISON demo brand.
 
@@ -56,3 +56,9 @@ Photography loads from the original Unsplash URLs and typography from Google Fon
 - `src/lib/router-compat.tsx`: navigation adapters used by the interface.
 - `public/`: favicon and static response headers.
 - `wrangler.jsonc`: standalone static deployment configuration.
+
+## Discovery and credits
+
+Public pages include descriptive sample-content metadata, canonical URLs, social previews, a sitemap, robots.txt, and a concise llms.txt directory. The initial exported HTML contains the page content; query-dependent state hydrates separately. Private browser-state pages are omitted from the sitemap and carry noindex metadata where applicable. These conventions support discovery; they do not promise search or assistant rankings.
+
+Every page includes an accessible “Made with XavaInf” credit linking to https://xavainf.com. The credit is placed in page flow so it does not cover forms, galleries, or mobile navigation.

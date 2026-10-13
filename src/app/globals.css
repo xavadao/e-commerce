@@ -249,3 +249,9 @@ body {
 		display: none;
 	}
 }
+
+/* In-flow credit stays clear of dialogs, form controls, and mobile navigation. */
+.xavainf-credit { display: flex; justify-content: center; padding: 18px 20px; background: #faf8f5; color: #302b26; }
+.xavainf-credit a { display: inline-flex; align-items: center; gap: 4px; min-height: 36px; padding: 7px 12px; border: 1px solid #bfb4a5; border-radius: 999px; font: 12px/1.4 system-ui, sans-serif; text-decoration: none; }
+.xavainf-credit a:hover { background: #ede7de; }
+.xavainf-credit a:focus-visible { outline: 2px solid #302b26; outline-offset: 4px; }

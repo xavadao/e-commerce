@@ -1,0 +1,17 @@
+# Maison Fashion Store
+
+> An editorial fashion storefront demo with twelve sample products, product galleries, a browser wishlist and fictional checkout. No purchases or payments are processed.
+
+This is a public sample website created with XavaInf. Content, products, business details and identities are illustrative.
+
+## Pages
+
+- [Editorial Fashion Demo](https://vibed-shop.xavainf.com/): Explore Maison, an editorial fashion storefront demo with sample clothing, accessories and a fictional checkout.
+- [The Collection](https://vibed-shop.xavainf.com/shop): Browse twelve sample Maison fashion pieces with sizes, color choices, galleries and category filters. This demo does not sell or ship products.
+- [The Maison Story](https://vibed-shop.xavainf.com/about): Discover the fictional Maison brand story and editorial direction in this sample fashion storefront.
+- [Editorial Inspiration](https://vibed-shop.xavainf.com/editorial): Explore the sample Maison brand story and fashion inspiration. This editorial route shares the fictional brand presentation.
+- [Sitemap](https://vibed-shop.xavainf.com/sitemap.xml): Complete public page list.
+
+## Demo boundaries
+
+No production purchases, appointments, email delivery or authentication are provided. No ratings or real business performance are claimed.

@@ -1,28 +1,25 @@
 import type { Metadata } from 'next';
-import { Suspense, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Providers } from '@/components/providers';
 import AppShell from '@/site/app-shell';
+import { SearchParamsProvider } from '@/lib/search-params';
+import { siteMetadata, websiteSchema } from '@/lib/seo';
+import { SiteCredit } from '@/components/site-credit';
 import './globals.css';
 
-export const metadata: Metadata = {
-	title: "MAISON — Luxury Editorial Fashion",
-	description: "",
-	icons: {
-		icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
-		shortcut: ['/favicon.svg'],
-	},
-};
+export const metadata: Metadata = siteMetadata;
 
-// useSearchParams in a client page needs a Suspense boundary under the App Router.
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en">
 			<body>
 				<Providers>
-					<Suspense fallback={null}>
+					<SearchParamsProvider>
 						<AppShell>{children}</AppShell>
-					</Suspense>
+					</SearchParamsProvider>
 				</Providers>
+                <SiteCredit />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema).replace(/</g, '\\u003c') }} />
 			</body>
 		</html>
 	);

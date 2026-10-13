@@ -64,7 +64,7 @@ export default function CheckoutPage() {
 	if (items.length === 0 && step !== 'confirmation') {
 		return (
 			<div className="min-h-screen flex flex-col items-center justify-center gap-6 pt-20 px-6">
-				<p className="font-serif text-2xl text-foreground">Your bag is empty</p>
+				<h1 className="font-serif text-2xl text-foreground">Your bag is empty</h1>
 				<Link
 					to="/shop"
 					className="text-subheading text-foreground border-b border-foreground pb-0.5 hover:opacity-60 transition-opacity duration-300"
