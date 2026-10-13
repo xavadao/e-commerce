@@ -1,34 +1,17 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "app",
-	"main": ".open-next/worker.js",
-	"compatibility_date": "2026-01-07",
-	"compatibility_flags": ["nodejs_compat"],
-	"observability": {
-		"enabled": true,
-		"logs": {
-			"enabled": true,
-			"invocation_logs": true
-		},
-		"traces": {
-			"enabled": true,
-			"head_sampling_rate": 0.01,
-			"destinations": ["tools-observability"],
-			"persist": false
-		}
-	},
-	"upload_source_maps": true,
-	"assets": {
-		"directory": ".open-next/assets",
-		"binding": "ASSETS"
-	},
-	"services": [
-		{
-			"binding": "NULLSHOT_API",
-			"service": "api-proxy"
-		}
-	],
-	"ai": {
-		"binding": "AI"
-	}
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vibed-shop",
+  "account_id": "2c7358a6bfb966e9717922cb59b14ff2",
+  "compatibility_date": "2026-10-13",
+  "workers_dev": false,
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    {
+      "pattern": "vibed-shop.xavainf.com",
+      "custom_domain": true
+    }
+  ]
 }

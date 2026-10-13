@@ -84,12 +84,12 @@ export default function CheckoutPage() {
 					</svg>
 				</div>
 				<div>
-					<p className="text-subheading text-muted-foreground mb-3">Order Confirmed</p>
+					<p className="text-subheading text-muted-foreground mb-3">Demo Order Complete</p>
 					<h1 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
 						Thank you, {form.firstName || 'valued client'}.
 					</h1>
 					<p className="text-muted-foreground font-sans font-light max-w-md">
-						Your order has been received. A confirmation has been sent to {form.email || 'your email'}. We'll notify you when your pieces are on their way.
+						Your demo checkout is complete. No payment was taken, order placed, or email sent.
 					</p>
 				</div>
 				<div className="flex gap-6">
@@ -126,6 +126,7 @@ export default function CheckoutPage() {
 					</Link>
 				</div>
 
+				<p className="text-sm text-muted-foreground mb-8">Demo store: use fictional information. No orders or payments are processed.</p>
 				{/* Step progress */}
 				<div className="flex items-center gap-3 mb-12">
 					{steps.map((s, i) => (
@@ -265,19 +266,19 @@ export default function CheckoutPage() {
 
 								{/* Express payment */}
 								<div className="grid grid-cols-2 gap-3 mb-8">
-									<button className="flex items-center justify-center gap-2 border border-border py-3.5 hover:border-foreground transition-colors duration-300">
+									<button disabled title="Unavailable in this demo" className="flex items-center justify-center gap-2 border border-border py-3.5 opacity-50 cursor-not-allowed">
 										<svg width="32" height="14" viewBox="0 0 32 14" fill="currentColor">
 											<text x="0" y="12" fontSize="12" fontFamily="sans-serif" fontWeight="600">Apple Pay</text>
 										</svg>
 									</button>
-									<button className="flex items-center justify-center gap-2 border border-border py-3.5 hover:border-foreground transition-colors duration-300">
+									<button disabled title="Unavailable in this demo" className="flex items-center justify-center gap-2 border border-border py-3.5 opacity-50 cursor-not-allowed">
 										<span className="text-xs font-sans font-medium">Google Pay</span>
 									</button>
 								</div>
 
 								<div className="flex items-center gap-4 mb-8">
 									<div className="flex-1 h-px bg-border" />
-									<span className="text-subheading text-muted-foreground">or pay by card</span>
+									<span className="text-subheading text-muted-foreground">demo card details</span>
 									<div className="flex-1 h-px bg-border" />
 								</div>
 
@@ -315,11 +316,11 @@ export default function CheckoutPage() {
 									disabled={!form.cardName || !form.cardNumber || !form.cardExpiry || !form.cardCvc}
 									className="mt-8 w-full bg-foreground text-background py-4 text-subheading tracking-widest hover:opacity-80 transition-opacity duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
 								>
-									Place Order — €{total.toLocaleString()}
+									Complete Demo Order — €{total.toLocaleString()}
 								</button>
 
 								<p className="text-xs text-muted-foreground font-sans text-center mt-4">
-									Your payment information is encrypted and secure. We never store card details.
+									Demo checkout only. Use fictional details; no payment is processed.
 								</p>
 							</div>
 						)}

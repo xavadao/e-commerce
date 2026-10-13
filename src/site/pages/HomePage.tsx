@@ -373,12 +373,12 @@ export default function HomePage() {
 						The Maison<br />Dispatch
 					</h2>
 					<p className="text-muted-foreground font-sans font-light leading-relaxed mb-10">
-						Receive early access to new collections, editorial features, and invitations to private events. No noise — only what matters.
+						Explore a preview of our newsletter signup. This demo does not create a subscription or send email.
 					</p>
 					{subscribed ? (
 						<div className="py-4">
-							<p className="font-serif text-xl text-foreground">Thank you for joining.</p>
-							<p className="text-muted-foreground font-sans text-sm mt-2">You'll hear from us soon.</p>
+							<p className="font-serif text-xl text-foreground">Demo signup complete.</p>
+							<p className="text-muted-foreground font-sans text-sm mt-2">No subscription was created or email sent.</p>
 						</div>
 					) : (
 						<form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-0 max-w-md mx-auto">

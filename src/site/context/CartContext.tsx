@@ -3,12 +3,9 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import type { Product } from '../data/products';
 
-export interface CartItem {
-	product: Product;
-	size: string;
-	color: string;
-	quantity: number;
-}
+import type { CartItem } from '../types';
+import { readStoredCart } from '../data/browser-storage';
+export type { CartItem } from '../types';
 
 interface CartContextValue {
 	items: CartItem[];
@@ -26,19 +23,28 @@ interface CartContextValue {
 const CartContext = createContext<CartContextValue | null>(null);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-	const [items, setItems] = useState<CartItem[]>(() => {
+	const [items, setItems] = useState<CartItem[]>([]);
+	const [hydrated, setHydrated] = useState(false);
+
+	useEffect(() => {
 		try {
 			const stored = localStorage.getItem('maison-cart');
-			return stored ? (JSON.parse(stored) as CartItem[]) : [];
+			setItems(readStoredCart(stored));
 		} catch {
-			return [];
+			// Restricted or invalid browser storage leaves the demo empty.
 		}
-	});
+		setHydrated(true);
+	}, []);
 	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
-		localStorage.setItem('maison-cart', JSON.stringify(items));
-	}, [items]);
+		if (!hydrated) return;
+		try {
+			localStorage.setItem('maison-cart', JSON.stringify(items));
+		} catch {
+			// Browser storage may be unavailable in private or restricted sessions.
+		}
+	}, [items, hydrated]);
 
 	const openCart = () => setIsOpen(true);
 	const closeCart = () => setIsOpen(false);

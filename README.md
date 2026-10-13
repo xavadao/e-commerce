@@ -1,82 +1,58 @@
-# Next.js App Router Starter
+# Vibed Shop
 
-A minimal starter for fullstack apps with the Next.js App Router. The default UI is a single centered **Nullshot Beta** line so you can grow the app from a clean slate.
+An editorial fashion storefront built around the MAISON demo brand.
+
+[Live demo](https://vibed-shop.xavainf.com)
 
 ## Features
 
-- `src/app/` directory routing
-- `layout.tsx`, `loading.tsx`, `not-found.tsx`, and metadata
-- Tailwind CSS v4 via `src/app/globals.css`
-- Ready for thin route handlers in `src/app/api/**/route.ts`
-- Backend layering: `src/services/` for business logic, `src/repositories/` for SQL/data access
-- Feature-oriented frontend placeholders: `src/features/`, `src/components/ui/`, `src/components/common/`
-- Optional local OpenNext + Wrangler workflow for Cloudflare preview/testing
+- Twelve sample products with galleries, sizes, colors, material notes, and related products.
+- Category browsing, search, sorting, and product detail pages.
+- Shopping bag and wishlist saved in browser storage.
+- Multi-step demo checkout with shipping selection and a confirmation screen.
+- Responsive home, brand story, and editorial pages.
 
-## App structure (conventions)
+## Run locally
 
-| Area | Purpose |
-|------|---------|
-| `src/app/**` | Routes, layouts, `loading.tsx` / `not-found.tsx`, and route handlers only. Compose UI from features and shared components; keep files thin. |
-| `src/features/<name>/` | Product features: `components/`, `hooks/`, `lib/`, `utils/`, `types.ts`, and a selective `index.ts` barrel. Hooks own data fetching and state; components stay declarative. |
-| `src/components/ui/` | Low-level, reusable UI primitives (e.g. shadcn-style building blocks). |
-| `src/components/common/` | App-wide reusable components that are not tied to one feature. |
-| `src/lib/` | Cross-cutting helpers (e.g. runtime, crypto) — not feature business logic. |
-| `src/services/` | Server-side business logic called from route handlers or Server Actions. |
-| `src/repositories/` | D1/SQL and data access only. |
+Prerequisites: Node.js 22.13 or newer and pnpm 11.13.0 (`corepack enable`).
 
-Avoid wildcard barrel exports (`export * from`) to prevent name collisions and bundle bloat. Prefer direct imports for heavy third-party packages where it helps tree-shaking (see Vercel React best practices).
-
-Follow the platform **`AGENTS.md`** at the monorepo root for agent conventions (analytics events live in `@nullshot/tools`).
-
-## Local Development
-
-1. Install dependencies with `pnpm install`.
-2. Copy `.dev.vars.example` to `.dev.vars` and add any secrets/runtime vars you need for local OpenNext/Cloudflare access.
-3. Add `.sql` files under `migrations/` when your app uses D1-backed features.
-4. Run `pnpm dev` for normal Next.js local development. The template runs `pnpm migrate:local` in `predev` so the default local D1 schema is applied automatically.
-5. Run `pnpm preview` to build with OpenNext and preview through Wrangler locally.
-6. If your app uses D1 with the default `DB` binding in `wrangler.jsonc`, run `pnpm migrate:local` manually when you want to re-apply local migrations outside `pnpm dev`, and `pnpm migrate:prod` for remote production migrations.
-7. Run `pnpm cf-typegen` after changing `wrangler.jsonc` bindings so `worker-configuration.d.ts` stays in sync.
-
-## Runtime Notes
-
-Build the app using normal App Router conventions in `src/app/`.
-Use `src/app/api/**/route.ts` or Server Actions for server-side behavior.
-Keep route handlers thin: request parsing and response shaping belong in the route, while business logic belongs in `src/services/` and SQL/D1 access belongs in `src/repositories/`.
-
-This template ships optional local OpenNext/Wrangler config so the app can run standalone on your machine.
-Playground preview and remote deploy still use the platform's custom Next-compatible runtime instead of relying on `.open-next` output.
-
-For D1-backed features such as the default auth starter, keep schema files in `migrations/`.
-The built-in migration scripts assume the default D1 binding name is `DB`.
-
-## File Structure
-
-```txt
-src/
-  app/
-    layout.tsx
-    page.tsx
-    globals.css
-    loading.tsx
-    not-found.tsx
-  components/
-    providers.tsx
-    common/
-    ui/
-  features/
-  lib/
-  services/
-  repositories/
-migrations/
-  README.md
-.cursor/
-  rules/
-.dev.vars.example
-worker-configuration.d.ts
-wrangler.jsonc
+```sh
+pnpm install
+pnpm dev
 ```
 
-## Migration note
+Open the development URL printed by Next.js (normally `http://localhost:3000`). No API keys, database, or environment variables are required.
 
-This project was rebuilt from the retired Vite template onto the Next.js template in September 2026. Pages, components and styles are carried over unchanged under `src/site/`; `src/lib/router-compat.tsx` maps the original react-router calls onto the App Router.
+## Build and preview
+
+```sh
+pnpm build
+pnpm preview
+```
+
+The build checks TypeScript and exports static HTML, JavaScript, and CSS to `out/`. Preview rebuilds the site and serves that output with Wrangler. Next.js App Router handles navigation; all sample detail routes are generated at build time. Adding data-backed routes requires updating the corresponding sample dataset and rebuilding.
+
+## Deploy
+
+The site uses Cloudflare Workers Static Assets. The existing `wrangler.jsonc` names the `vibed-shop` Worker and attaches the custom domain `vibed-shop.xavainf.com`.
+
+```sh
+pnpm exec wrangler login
+pnpm deploy
+```
+
+Deployment requires access to the configured Cloudflare account and the `xavainf.com` zone. For another account, update `account_id`, Worker name, and custom-domain route in `wrangler.jsonc`. Authenticate through Wrangler or an untracked `CLOUDFLARE_API_TOKEN`; never commit credentials.
+
+## Demo limitations
+
+Checkout is a client-side demonstration. No order is created, payment charged, email sent, or stock reserved. Use fictional contact and card information. Newsletter and social controls are examples rather than live integrations. Cart and wishlist data stay in the current browser.
+
+Photography loads from the original Unsplash URLs and typography from Google Fonts, so those visuals require internet access. The app has no production API, authentication, billing, or server-side persistence.
+
+## Source layout
+
+- `src/app/`: Next.js routes, metadata, and styles.
+- `src/site/`: original interface, components, and bundled sample data.
+- `src/lib/router-compat.tsx`: navigation adapters used by the interface.
+- `public/`: favicon and static response headers.
+- `wrangler.jsonc`: standalone static deployment configuration.

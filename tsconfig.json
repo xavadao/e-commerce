@@ -36,12 +36,10 @@
     "src",
     "next-env.d.ts",
     "css.d.ts",
-    "worker-configuration.d.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    ".open-next",
     ".next",
     "dist",
     ".wrangler",

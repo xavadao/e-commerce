@@ -1,13 +1,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
-/**
- * App Component — MAISON Editorial Fashion
- *
- * Routing: React Router v7 library mode — createBrowserRouter + RouterProvider.
- * - Import from 'react-router' only. Never from 'react-router-dom'.
- * - Use createBrowserRouter (data router). Do NOT use <BrowserRouter> or <HashRouter>.
- */
+
 
 import { Outlet, OutletProvider } from '@/lib/router-compat';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
